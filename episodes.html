@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Episodes • Athlete Voices Podcast</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Athlete Voices</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="episodes.html" aria-current="page">Episodes</a>
+        <a href="resources.html">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <div class="page-head">
+      <h1>Episodes</h1>
+      <p class="muted">Click an episode for show notes and a player link.</p>
+      <input id="search" class="input" type="search" placeholder="Search episodes (title, guest, topic)..." />
+    </div>
+
+    <div id="episodeList" class="stack">
+      <!-- EP 01 -->
+      <article class="card episode" id="ep-01" data-title="The comeback mindset" data-guest="Guest Name" data-topics="injury recovery psychology training">
+        <div class="card-body">
+          <p class="eyebrow">Episode 01 · Guest Name</p>
+          <h2 class="card-title">The comeback mindset</h2>
+          <p class="muted">Returning from injury, rebuilding confidence, and training smarter.</p>
+
+          <div class="pill-row">
+            <span class="pill">Recovery</span>
+            <span class="pill">Mindset</span>
+            <span class="pill">Training</span>
+          </div>
+
+          <details class="details">
+            <summary>Show notes</summary>
+            <ul>
+              <li>How to set a realistic comeback timeline</li>
+              <li>Confidence rebuilding drills</li>
+              <li>Training load and recovery signals</li>
+            </ul>
+          </details>
+
+          <div class="card-actions">
+            <a class="button button-small" href="#" rel="noopener">Listen (Spotify link)</a>
+            <a class="button button-small button-ghost" href="#" rel="noopener">Watch (YouTube link)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- EP 02 -->
+      <article class="card episode" id="ep-02" data-title="Fueling for performance" data-guest="Guest Name" data-topics="nutrition sleep hydration">
+        <div class="card-body">
+          <p class="eyebrow">Episode 02 · Guest Name</p>
+          <h2 class="card-title">Fueling for performance</h2>
+          <p class="muted">Nutrition basics, game-day routines, and hydration that actually works.</p>
+
+          <div class="pill-row">
+            <span class="pill">Nutrition</span>
+            <span class="pill">Recovery</span>
+          </div>
+
+          <details class="details">
+            <summary>Show notes</summary>
+            <ul>
+              <li>Pre-game meal framework</li>
+              <li>Simple hydration rules</li>
+              <li>Supplements: what matters vs. what doesn’t</li>
+            </ul>
+          </details>
+
+          <div class="card-actions">
+            <a class="button button-small" href="#" rel="noopener">Listen (Spotify link)</a>
+            <a class="button button-small button-ghost" href="#" rel="noopener">Watch (YouTube link)</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Athlete Voices Podcast</p>
+      <p class="muted"><a href="resources.html">Resources</a> · <a href="index.html">Home</a></p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
