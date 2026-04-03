@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Q&A • Committed Podcast</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Committed Podcast</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="roster.html">Student Roster</a>
+        <a href="recruitment.html">Recruitment Tips</a>
+        <a href="admissions.html">College Admissions</a>
+        <a href="qa.html" aria-current="page">Q&A</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container section">
+    <h1>Q&A</h1>
+    <p class="muted">Ask a question and Devin will reply directly to your email.</p>
+
+    <section class="card">
+      <div class="card-body">
+        <h2 class="card-title">Submit Your Question</h2>
+
+        <!-- FORM SUBMISSION HANDLES EMAIL DELIVERY -->
+        <form action="https://formsubmit.co/devingreer20@icloud.com" method="POST" class="stack">
+
+          <!-- Redirect to a thank-you page -->
+          <input type="hidden" name="_next" value="thankyou.html">
+
+          <!-- Disable spam -->
+          <input type="hidden" name="_captcha" value="false">
+
+          <label>
+            Your Name
+            <input class="input" type="text" name="name" required>
+          </label>
+
+          <label>
+            Your Email
+            <input class="input" type="email" name="email" required>
+          </label>
+
+          <label>
+            Your Question
+            <textarea class="input" name="question" rows="6" required></textarea>
+          </label>
+
+          <button class="button" type="submit">Send Question</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Committed Podcast</p>
+    </div>
+  </footer>
+
+  <script src="assets/site.js"></script>
+</body>
+</html>
