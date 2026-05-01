@@ -40,6 +40,44 @@ if (search && list) {
   });
 })();
 
+// Keyboard navigation for galleries and lightbox
+document.addEventListener('keydown', function (e) {
+  const ov = document.getElementById('img-overlay');
+  const LEFT = ['ArrowLeft', 'Left'];
+  const RIGHT = ['ArrowRight', 'Right'];
+
+  // If lightbox open, navigate images there by finding current src and moving to next/prev in same gallery
+  if (ov && (LEFT.includes(e.key) || RIGHT.includes(e.key))) {
+    const img = ov.querySelector('img');
+    if (!img) return;
+    const curr = img.src;
+    // find the anchor in the document that matches this src
+    const anchors = Array.from(document.querySelectorAll('.photo-gallery a[data-full]'));
+    const idx = anchors.findIndex(a => (a.getAttribute('href') || a.querySelector('img')?.src) === curr);
+    if (idx === -1) return;
+    const delta = LEFT.includes(e.key) ? -1 : 1;
+    const next = anchors[(idx + delta + anchors.length) % anchors.length];
+    if (next) {
+      img.src = next.getAttribute('href') || next.querySelector('img')?.src;
+      img.alt = next.querySelector('img')?.alt || '';
+    }
+    return;
+  }
+
+  // Otherwise, if focus is inside a .photo-gallery or the focused element is an image inside one, scroll that gallery
+  const active = document.activeElement;
+  const gallery = active?.closest && active.closest('.photo-gallery') || (active && active.classList && active.classList.contains('photo-gallery') ? active : null);
+  // if active element isn't in a gallery, try to find a visible gallery under the mouse/viewport
+  const visibleGallery = gallery || document.querySelector('.photo-gallery');
+  if (!visibleGallery) return;
+
+  if (LEFT.includes(e.key)) {
+    visibleGallery.scrollBy({ left: -visibleGallery.clientWidth * 0.6, behavior: 'smooth' });
+  } else if (RIGHT.includes(e.key)) {
+    visibleGallery.scrollBy({ left: visibleGallery.clientWidth * 0.6, behavior: 'smooth' });
+  }
+});
+
   search.addEventListener("input", () => {
     const q = search.value.trim().toLowerCase();
 
