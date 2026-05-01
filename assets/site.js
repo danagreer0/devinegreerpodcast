@@ -26,6 +26,9 @@ if (search && list) {
     e.preventDefault();
     const src = a.getAttribute('href') || a.querySelector('img')?.src;
     if (!src) return;
+    // mark which anchor opened the lightbox so navigation can be scoped
+    document.querySelectorAll('.photo-gallery a[data-full]').forEach(x => x.removeAttribute('data-active'));
+    a.setAttribute('data-active', 'true');
     let ov = document.getElementById('img-overlay') || createOverlay();
     ov.querySelector('img').src = src;
     const alt = a.querySelector('img')?.alt || '';
@@ -50,9 +53,10 @@ document.addEventListener('keydown', function (e) {
   if (ov && (LEFT.includes(e.key) || RIGHT.includes(e.key))) {
     const img = ov.querySelector('img');
     if (!img) return;
+    // find the active anchor that opened the lightbox
+    const activeAnchor = document.querySelector('.photo-gallery a[data-active]');
+    const anchors = activeAnchor ? Array.from(activeAnchor.closest('.photo-gallery').querySelectorAll('a[data-full]')) : Array.from(document.querySelectorAll('.photo-gallery a[data-full]'));
     const curr = img.src;
-    // find the anchor in the document that matches this src
-    const anchors = Array.from(document.querySelectorAll('.photo-gallery a[data-full]'));
     const idx = anchors.findIndex(a => (a.getAttribute('href') || a.querySelector('img')?.src) === curr);
     if (idx === -1) return;
     const delta = LEFT.includes(e.key) ? -1 : 1;
@@ -60,6 +64,9 @@ document.addEventListener('keydown', function (e) {
     if (next) {
       img.src = next.getAttribute('href') || next.querySelector('img')?.src;
       img.alt = next.querySelector('img')?.alt || '';
+      // update active mark
+      anchors.forEach(a => a.removeAttribute('data-active'));
+      next.setAttribute('data-active', 'true');
     }
     return;
   }
@@ -76,6 +83,31 @@ document.addEventListener('keydown', function (e) {
   } else if (RIGHT.includes(e.key)) {
     visibleGallery.scrollBy({ left: visibleGallery.clientWidth * 0.6, behavior: 'smooth' });
   }
+});
+
+// Make gallery anchors focusable for keyboard users and enable left/right to move focus between thumbnails
+document.addEventListener('DOMContentLoaded', () => {
+  const galleries = Array.from(document.querySelectorAll('.photo-gallery'));
+  galleries.forEach(g => {
+    const anchors = Array.from(g.querySelectorAll('a[data-full]'));
+    anchors.forEach((a, i) => {
+      a.setAttribute('tabindex', '0');
+      // on keydown when this anchor is focused, move focus to next/prev anchor
+      a.addEventListener('keydown', (ev) => {
+        if (ev.key === 'ArrowLeft' || ev.key === 'Left') {
+          ev.preventDefault();
+          const prev = anchors[(i - 1 + anchors.length) % anchors.length];
+          prev?.focus();
+          prev?.scrollIntoView({inline: 'center', behavior: 'smooth'});
+        } else if (ev.key === 'ArrowRight' || ev.key === 'Right') {
+          ev.preventDefault();
+          const next = anchors[(i + 1) % anchors.length];
+          next?.focus();
+          next?.scrollIntoView({inline: 'center', behavior: 'smooth'});
+        }
+      });
+    });
+  });
 });
 
   search.addEventListener("input", () => {
