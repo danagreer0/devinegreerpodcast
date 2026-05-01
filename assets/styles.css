@@ -126,8 +126,8 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
 
 /* Avatar inside roster cards */
 .card-body .avatar {
-  width: 88px;
-  height: 88px;
+  width: 64px;
+  height: 64px;
   border-radius: 12px;
   object-fit: cover;
   display: block;
@@ -144,7 +144,8 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
 }
 .photo-gallery img {
   width: 100%;
-  height: 110px;
+  height: 120px;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
   display: block;
@@ -156,6 +157,19 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
 }
 @media (max-width: 420px) {
   .photo-gallery { grid-template-columns: 1fr; }
+}
+
+/* Homepage logo sizing inside the hero card */
+.logo-card .card-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  width: min(320px, 48vw);
+}
+
+@media (max-width: 760px) {
+  .logo-card .card-body img { width: min(220px, 60vw); }
 }
 
 .eyebrow {
