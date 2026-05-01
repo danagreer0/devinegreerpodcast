@@ -23,7 +23,7 @@ html, body { height: 100%; }
 html { font-size: 16px; }
 
 body {
-  mmargin: 0;
+  margin: 0;
   font-family: var(--font);
   background:
     radial-gradient(circle at top center, rgba(122,162,255,.18), transparent 60%),
@@ -123,6 +123,17 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
 
 .card-body { padding: var(--space-2); }
 .card-title { margin: 6px 0 8px; }
+
+/* Avatar inside roster cards */
+.card-body .avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 12px;
+  border: 1px solid rgba(34,48,74,.7);
+}
 
 .eyebrow {
   margin: 0;
