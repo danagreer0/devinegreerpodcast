@@ -29,7 +29,8 @@ body {
     radial-gradient(circle at top center, rgba(122,162,255,.18), transparent 60%),
     linear-gradient(180deg, #0b0f17, #0b0f17);
   color: var(--text);
-  line-height: 1.5;
+  /* improved readable line-height for long content */
+  line-height: 1.65;
 
   /* NEW: prevent accidental horizontal scroll on small screens */
   overflow-x: hidden;
@@ -37,6 +38,7 @@ body {
   /* NEW: better text rendering + mobile text sizing */
   -webkit-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; }
@@ -46,6 +48,13 @@ a { color: inherit; }
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 var(--space-2);
+}
+
+/* Constrain measure for long passages to improve readability */
+.container > * {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Header */
@@ -103,12 +112,17 @@ a { color: inherit; }
   color: var(--muted);
   font-size: clamp(1rem, 1.2vw, 1.05rem);
   max-width: 64ch;
+  margin-bottom: var(--space-2);
 }
 
 /* NEW: global heading scaling (helps other pages) */
-h2 { font-size: clamp(20px, 2.4vw, 28px); margin: 0 0 10px; }
-h3 { font-size: clamp(18px, 2vw, 22px); margin: 0 0 8px; }
-p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
+h1 { font-size: clamp(26px, 3.4vw, 40px); margin: 0 0 12px; font-weight: 700; }
+h2 { font-size: clamp(20px, 2.4vw, 28px); margin: 0 0 12px; font-weight: 700; }
+h3 { font-size: clamp(18px, 2vw, 22px); margin: 0 0 10px; font-weight: 600; }
+p, li { font-size: clamp(15px, 1.2vw, 16.5px); line-height: 1.65; }
+
+/* Ensure paragraphs have breathing room */
+p { margin-bottom: 1rem; }
 
 /* Sections */
 .section { padding: var(--space-3) 0 clamp(10px, 1.6vw, 14px); }
@@ -121,8 +135,8 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
   box-shadow: var(--shadow);
 }
 
-.card-body { padding: var(--space-2); }
-.card-title { margin: 6px 0 8px; }
+.card-body { padding: var(--space-3); }
+.card-title { margin: 6px 0 10px; }
 
 /* Avatar inside roster cards */
 .card-body .avatar {
@@ -280,6 +294,23 @@ p, li { font-size: clamp(15px, 1.2vw, 16.5px); }
 .details { margin-top: 12px; }
 .details summary { cursor: pointer; color: var(--accent); }
 .list { margin: 10px 0 0; padding-left: 18px; }
+
+/* More readable list spacing */
+.list li { margin-bottom: 0.5rem; }
+.list ul { margin-top: 0.5rem; }
+
+/* Improve link contrast inside content and make links more discoverable */
+.card-body a, .lead a, p a {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* Focus outlines for keyboard users */
+.nav a:focus, .button:focus, .card-body a:focus, .photo-gallery a:focus {
+  outline: 3px solid rgba(89,209,182,0.18);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgba(122,162,255,0.06);
+}
 
 /* Page head + inputs */
 .page-head { display: grid; gap: 10px; margin-bottom: 14px; }
