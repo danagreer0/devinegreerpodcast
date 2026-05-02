@@ -335,6 +335,24 @@ p { margin-bottom: 1rem; }
 }
 .footer-inner { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 
+/* In-page TOC styles */
+.inpage-toc { margin: 12px 0 18px; padding: 10px 12px; border-radius: 10px; background: rgba(34,48,74,.18); border: 1px solid rgba(34,48,74,.35); }
+.inpage-toc ul { margin: 8px 0 0; padding-left: 18px; }
+.inpage-toc a { color: var(--accent); text-decoration: none; }
+.inpage-toc a:hover, .inpage-toc a:focus { text-decoration: underline; }
+
+/* Print / PDF friendly styles */
+@media print {
+  :root { color-scheme: light; }
+  body { background: #fff; color: #000; }
+  .site-header, .site-footer, .nav, .cta-row, .button { display: none !important; }
+  .container { max-width: 720px; padding: 0; }
+  .card { border: none; box-shadow: none; background: transparent; }
+  .inpage-toc { page-break-after: avoid; }
+  img { max-width: 100%; height: auto; }
+  a::after { content: " (" attr(href) ")"; font-size: 0.9em; }
+}
+
 /* =========================
    NEW: Mobile layout polish
    ========================= */
