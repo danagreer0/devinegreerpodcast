@@ -150,8 +150,8 @@ p { margin-bottom: 1rem; }
 }
 
 /* Amor photo gallery */
-.photo-gallery {
-  /* horizontal, scrollable gallery for each person */
+/*.photo-gallery {
+  /* horizontal, scrollable gallery for each person 
   display: flex;
   gap: auto;
   margin-top: 20px;
@@ -171,7 +171,7 @@ p { margin-bottom: 1rem; }
   object-fit: contain;
   background: #0b1220; /* optional: fills empty space nicely 
   
-}*/
+}
 .photo-gallery a {
   flex: 0 0 auto;
   scroll-snap-align: center;
@@ -187,7 +187,34 @@ p { margin-bottom: 1rem; }
   display: block;
   border: 1px solid rgba(34,48,74,.65);
   cursor: pointer;
+} */
+.photo-gallery {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 }
+
+.photo-gallery a {
+  flex: 0 0 auto;
+  width: 260px;
+  height: 200px;
+  scroll-snap-align: center;
+  display: block;
+}
+
+.photo-gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 14px;
+  display: block;
+}
+
 @media (max-width: 960px) {
   .photo-gallery a { width: 220px; height: 140px; }
 }
