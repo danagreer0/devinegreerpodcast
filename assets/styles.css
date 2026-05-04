@@ -188,7 +188,7 @@ p { margin-bottom: 1rem; }
   border: 1px solid rgba(34,48,74,.65);
   cursor: pointer;
 }
-/*@media (max-width: 960px) {
+@media (max-width: 960px) {
   .photo-gallery a { width: 220px; height: 140px; }
 }
 @media (max-width: 760px) {
@@ -196,7 +196,7 @@ p { margin-bottom: 1rem; }
 }
 @media (max-width: 420px) {
   .photo-gallery a { width: 160px; height: 110px; }
-}*/
+}
 
 /* Homepage logo sizing inside the hero card */
 .logo-card .card-body img {
