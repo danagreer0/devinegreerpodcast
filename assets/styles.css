@@ -153,8 +153,8 @@ p { margin-bottom: 1rem; }
 .photo-gallery {
   /* horizontal, scrollable gallery for each person */
   display: flex;
-  gap: 12px;
-  margin-top: 12px;
+  gap: auto;
+  margin-top: auto;
   overflow-x: auto;
   padding-bottom: 6px;
   -webkit-overflow-scrolling: touch;
